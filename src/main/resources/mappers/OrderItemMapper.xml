@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackzhang.mall.dao.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.OrderItem">
+    <constructor>
+      <arg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.jackzhang.mall.model.OrderItem">
+    insert into t_order_goods (order_id, goods_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.OrderItem">
+    insert into t_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.OrderItem">
+    <constructor>
+      <arg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.jackzhang.mall.model.OrderItem">
+    insert into t_order_goods (order_id, goods_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.OrderItem">
+    insert into t_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

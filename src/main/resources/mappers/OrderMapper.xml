@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackzhang.mall.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="consignee" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="total" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="payment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="state" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="time" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="postcard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="delivery" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="freight" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ispay" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, consignee, total, payment, state, time, user_id, address, phone, postcard, 
+    delivery, freight, ispay, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jackzhang.mall.model.Order">
+    insert into t_order (order_id, consignee, total, 
+      payment, state, time, user_id, 
+      address, phone, postcard, 
+      delivery, freight, ispay, 
+      create_time)
+    values (#{orderId,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{total,jdbcType=DOUBLE}, 
+      #{payment,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, #{time,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{postcard,jdbcType=VARCHAR}, 
+      #{delivery,jdbcType=VARCHAR}, #{freight,jdbcType=VARCHAR}, #{ispay,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.Order">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="postcard != null">
+        postcard,
+      </if>
+      <if test="delivery != null">
+        delivery,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="ispay != null">
+        ispay,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="postcard != null">
+        #{postcard,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        #{delivery,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        #{ispay,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jackzhang.mall.model.Order">
+    update t_order
+    <set>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=BIT},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="postcard != null">
+        postcard = #{postcard,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        delivery = #{delivery,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        ispay = #{ispay,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jackzhang.mall.model.Order">
+    update t_order
+    set consignee = #{consignee,jdbcType=VARCHAR},
+      total = #{total,jdbcType=DOUBLE},
+      payment = #{payment,jdbcType=VARCHAR},
+      state = #{state,jdbcType=BIT},
+      time = #{time,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      postcard = #{postcard,jdbcType=VARCHAR},
+      delivery = #{delivery,jdbcType=VARCHAR},
+      freight = #{freight,jdbcType=VARCHAR},
+      ispay = #{ispay,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="consignee" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="total" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="payment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="state" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="time" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="postcard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="delivery" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="freight" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ispay" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, consignee, total, payment, state, time, user_id, address, phone, postcard, 
+    delivery, freight, ispay
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jackzhang.mall.model.Order">
+    insert into t_order (order_id, consignee, total, 
+      payment, state, time, user_id, 
+      address, phone, postcard, 
+      delivery, freight, ispay
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{total,jdbcType=DOUBLE}, 
+      #{payment,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, #{time,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{postcard,jdbcType=VARCHAR}, 
+      #{delivery,jdbcType=VARCHAR}, #{freight,jdbcType=VARCHAR}, #{ispay,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.Order">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="postcard != null">
+        postcard,
+      </if>
+      <if test="delivery != null">
+        delivery,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="ispay != null">
+        ispay,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="postcard != null">
+        #{postcard,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        #{delivery,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        #{ispay,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jackzhang.mall.model.Order">
+    update t_order
+    <set>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=BIT},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="postcard != null">
+        postcard = #{postcard,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        delivery = #{delivery,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        ispay = #{ispay,jdbcType=BIT},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jackzhang.mall.model.Order">
+    update t_order
+    set consignee = #{consignee,jdbcType=VARCHAR},
+      total = #{total,jdbcType=DOUBLE},
+      payment = #{payment,jdbcType=VARCHAR},
+      state = #{state,jdbcType=BIT},
+      time = #{time,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      postcard = #{postcard,jdbcType=VARCHAR},
+      delivery = #{delivery,jdbcType=VARCHAR},
+      freight = #{freight,jdbcType=VARCHAR},
+      ispay = #{ispay,jdbcType=BIT}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackzhang.mall.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.Comment">
+    <constructor>
+      <idArg column="comments_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    comments_id, comment, goods_id, createtime, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_comments
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_comments
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jackzhang.mall.model.Comment">
+    insert into t_comments (comments_id, comment, goods_id, 
+      createtime, user_id)
+    values (#{commentsId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.Comment">
+    insert into t_comments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentsId != null">
+        comments_id,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentsId != null">
+        #{commentsId,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jackzhang.mall.model.Comment">
+    update t_comments
+    <set>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jackzhang.mall.model.Comment">
+    update t_comments
+    set comment = #{comment,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.Comment">
+    <constructor>
+      <idArg column="comments_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createtime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    comments_id, comment, goods_id, createtime, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_comments
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_comments
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jackzhang.mall.model.Comment">
+    insert into t_comments (comments_id, comment, goods_id, 
+      createtime, user_id)
+    values (#{commentsId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.Comment">
+    insert into t_comments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentsId != null">
+        comments_id,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentsId != null">
+        #{commentsId,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jackzhang.mall.model.Comment">
+    update t_comments
+    <set>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jackzhang.mall.model.Comment">
+    update t_comments
+    set comment = #{comment,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where comments_id = #{commentsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mall-springmvc-mybatis" target="1.5" />
+      <module name="mall-springmvc-mybatis" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
