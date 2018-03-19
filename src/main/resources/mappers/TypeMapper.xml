@@ -3,10 +3,10 @@
 <mapper namespace="com.jackzhang.mall.dao.TypeMapper">
   <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.Type">
     <constructor>
-      <idArg column="type_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="type_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="fid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="state" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="state" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
@@ -18,14 +18,20 @@
     from t_type
     where type_id = #{typeId,jdbcType=VARCHAR}
   </select>
+  <select id="getSubType" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_type
+    where fid = #{fid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from t_type
     where type_id = #{typeId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.jackzhang.mall.model.Type">
-    insert into t_type (type_id, name, fid, 
+    insert into t_type (name, fid,
       state)
-    values (#{typeId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR},
       #{state,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.jackzhang.mall.model.Type">
@@ -81,84 +87,5 @@
       state = #{state,jdbcType=BIT}
     where type_id = #{typeId,jdbcType=VARCHAR}
   </update>
-  <resultMap id="BaseResultMap" type="com.jackzhang.mall.model.Type">
-    <constructor>
-      <idArg column="type_id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="fid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="state" javaType="java.lang.Boolean" jdbcType="BIT" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
-    type_id, name, fid, state
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_type
-    where type_id = #{typeId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_type
-    where type_id = #{typeId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.jackzhang.mall.model.Type">
-    insert into t_type (type_id, name, fid, 
-      state)
-    values (#{typeId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR}, 
-      #{state,jdbcType=BIT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.jackzhang.mall.model.Type">
-    insert into t_type
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="fid != null">
-        fid,
-      </if>
-      <if test="state != null">
-        state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="typeId != null">
-        #{typeId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="fid != null">
-        #{fid,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jackzhang.mall.model.Type">
-    update t_type
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="fid != null">
-        fid = #{fid,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null">
-        state = #{state,jdbcType=BIT},
-      </if>
-    </set>
-    where type_id = #{typeId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jackzhang.mall.model.Type">
-    update t_type
-    set name = #{name,jdbcType=VARCHAR},
-      fid = #{fid,jdbcType=VARCHAR},
-      state = #{state,jdbcType=BIT}
-    where type_id = #{typeId,jdbcType=VARCHAR}
-  </update>
+
 </mapper>

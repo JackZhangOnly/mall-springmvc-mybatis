@@ -1,6 +1,7 @@
 package com.jackzhang.mall.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private String orderId;
@@ -30,6 +31,8 @@ public class Order {
     private Boolean ispay;
 
     private Date createTime;
+
+    private List<OrderItem> orderItems;
 
     public Order(String orderId, String consignee, Double total, String payment, Boolean state, String time, String userId, String address, String phone, String postcard, String delivery, String freight, Boolean ispay, Date createTime) {
         this.orderId = orderId;
@@ -162,5 +165,13 @@ public class Order {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

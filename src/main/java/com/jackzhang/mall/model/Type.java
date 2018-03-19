@@ -1,16 +1,16 @@
 package com.jackzhang.mall.model;
 
 public class Type {
-    private String typeId;
+    private Integer type_id;
 
     private String name;
 
     private String fid;
 
-    private Boolean state;
+    private Integer state;
 
-    public Type(String typeId, String name, String fid, Boolean state) {
-        this.typeId = typeId;
+    public Type(Integer typeId, String name, String fid, Integer state) {
+        this.type_id = typeId;
         this.name = name;
         this.fid = fid;
         this.state = state;
@@ -20,12 +20,12 @@ public class Type {
         super();
     }
 
-    public String getTypeId() {
-        return typeId;
+    public Integer getTypeId() {
+        return type_id;
     }
 
-    public void setTypeId(String typeId) {
-        this.typeId = typeId == null ? null : typeId.trim();
+    public void setTypeId(Integer typeId) {
+        this.type_id = typeId ;
     }
 
     public String getName() {
@@ -44,11 +44,11 @@ public class Type {
         this.fid = fid == null ? null : fid.trim();
     }
 
-    public Boolean getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(Boolean state) {
+    public void setState(int state) {
         this.state = state;
     }
 }
